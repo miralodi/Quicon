@@ -1,4 +1,44 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<form action="/game" method="GET">
+    <h4><label for="selection">Set the difficulty, the time limit, and the two players names!</label></h4>
+        <div class="row">
+            <div class="col-4 col-md-2 col-lg-1">
+                <label>Difficulty</label>
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <label>Time</label>
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <label>Player 1</label>
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <label>Player 2</label>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 col-md-2 col-lg-1">
+                <select class="form-control" name="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <select class="form-control" name="time">
+                    {% for num in range(3, 21) %}
+                        <option value="{{ num }}">{{ num }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <input type="text" class="form-control" name="player1">
+            </div>
+            <div class="col-4 col-md-2 col-lg-1">
+                <input type="text" class="form-control" name="player2">
+            </div>
+        </div>
+        <button class="btn-outline-dark" type="submit">Let's go!</button>
+    </form>
 {% endblock %}
