@@ -10,32 +10,34 @@
 
     <div class="row m-2 justify-content-between">
         <div class="col-3">
-            <h5 class="d-inline p-2">NameName</h5>
-            <span>Score: 1</span>
+            <h5 class="d-inline p-2">{{ player_1 }}</h5>
+            <span>Score: {{ score_1 }}</span>
         </div>
 
         <h5 class="col-3 d-inline">Time</h5>
 
         <div class="col-3">
-            <h5 class="d-inline p-2">NameXY</h5>
-            <span>Score: 1</span>
+            <h5 class="d-inline p-2">{{ player_2 }}</h5>
+            <span>Score: {{ score_2 }}</span>
         </div>
     </div>
 
     <div class="row justify-content-around">
 
         <div class="col-2">
-            {% for counter in range(0, 5) %}
-            <div class="card mt-1 shadow">
-                <div class="card-horizontal align-items-center">
-                    <div class="img-square-wrapper">
-                        <img class="" src="/static/images/icons8-visual-studio-96.png" alt="vsc">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Key</p>
+            {% for counter in range(0, {{ difficulty }}) %}
+                {% for key in {{ player_1_keys }} %}
+                <div class="card mt-1 shadow">
+                    <div class="card-horizontal align-items-center">
+                        <div class="img-square-wrapper">
+                            <img class="" src="/static/images/icons8-visual-studio-96.png" alt="vsc">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ key }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                {% endfor %}
             {% endfor %}
         </div>
 
@@ -44,17 +46,19 @@
         </div>
 
         <div class="col-2">
-            {% for counter in range(0, 5) %}
-            <div class="card mt-1 shadow">
-                <div class="card-horizontal align-items-center">
-                    <div class="card-body">
-                        <p class="card-text">Kex</p>
-                    </div>
-                    <div class="img-square-wrapper">
-                        <img class="" src="/static/images/icons8-json-100.png" alt="json">
+            {% for counter in range(0, {{ difficulty }}) %}
+                {% for key in {{ player_2_keys }} %}
+                <div class="card mt-1 shadow">
+                    <div class="card-horizontal align-items-center">
+                        <div class="card-body">
+                            <p class="card-text">{{ key }}</p>
+                        </div>
+                        <div class="img-square-wrapper">
+                            <img class="" src="/static/images/icons8-json-100.png" alt="json">
+                        </div>
                     </div>
                 </div>
-            </div>
+                {% endfor %}
             {% endfor %}
         </div>
 
