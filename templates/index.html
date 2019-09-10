@@ -1,47 +1,42 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="container text-center p-3">
-<form action="/game" method="GET">
-    <h4><label for="selection">Set the difficulty, the time limit, and the two players names!</label></h4>
-        <div class="row">
-            <div class="col-4 col-md-2 col-lg-1">
-                <label>Difficulty</label>
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <label>Time</label>
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <label>Player 1</label>
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <label>Player 2</label>
-            </div>
+<div class="row p-4 text-center justify-content-center">
+    <form class="col-4 shadow-lg p-4" action="/game" method="GET">
+        <h1 class="p-3">Quicon</h1>
+
+        <div class="form-group">
+            <label for="player_1">Player 1</label>
+            <input type="text" class="form-control players" id="player_1" name="player_1" value="Player1">
         </div>
 
-        <div class="row mb-3">
-            <div class="col-4 col-md-2 col-lg-1">
-                <select class="form-control" name="difficulty">
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <select class="form-control" name="time">
-                    {% for num in range(3, 21) %}
-                        <option value="{{ num }}">{{ num }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <input type="text" class="form-control" name="player1">
-            </div>
-            <div class="col-4 col-md-2 col-lg-1">
-                <input type="text" class="form-control" name="player2">
-            </div>
+        <div class="form-group">
+            <label for="player_2">Player 2</label>
+            <input type="text" class="form-control players" id="player_2" name="player_2" value="Player2">
         </div>
+
+        <div class="form-group">
+            <label for="difficulty">Difficulty</label>
+            <select class="form-control" id="difficulty" name="difficulty">
+                <option value="3">Easy</option>
+                <option value="4">Medium</option>
+                <option value="5">Hard</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="time">Time</label>
+            <select class="form-control" id="time" name="time">
+                <option value="0:30">0:30</option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+            </select>
+
+        </div>
+
         <button class="btn btn-primary" type="submit">Let's go!</button>
     </form>
+
 </div>
 {% endblock %}
