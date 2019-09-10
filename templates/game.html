@@ -25,19 +25,17 @@
     <div class="row justify-content-around">
 
         <div class="col-2">
-            {% for counter in range(0, {{ difficulty }}) %}
-                {% for key in {{ player_1_keys }} %}
-                <div class="card mt-1 shadow">
-                    <div class="card-horizontal align-items-center">
-                        <div class="img-square-wrapper">
-                            <img class="" src="/static/images/icons8-visual-studio-96.png" alt="vsc">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{ key }}</p>
-                        </div>
+            {% for key in player_1_keys %}
+            <div class="card mt-1 shadow">
+                <div class="card-horizontal align-items-center">
+                    <div class="img-square-wrapper">
+                        <img class="" src="/static/images/icons8-visual-studio-96.png" alt="vsc">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ key }}</p>
                     </div>
                 </div>
-                {% endfor %}
+            </div>
             {% endfor %}
         </div>
 
@@ -46,19 +44,17 @@
         </div>
 
         <div class="col-2">
-            {% for counter in range(0, {{ difficulty }}) %}
-                {% for key in {{ player_2_keys }} %}
-                <div class="card mt-1 shadow">
-                    <div class="card-horizontal align-items-center">
-                        <div class="card-body">
-                            <p class="card-text">{{ key }}</p>
-                        </div>
-                        <div class="img-square-wrapper">
-                            <img class="" src="/static/images/icons8-json-100.png" alt="json">
-                        </div>
+            {% for key in player_2_keys %}
+            <div class="card mt-1 shadow">
+                <div class="card-horizontal align-items-center">
+                    <div class="card-body">
+                        <p class="card-text">{{ key }}</p>
+                    </div>
+                    <div class="img-square-wrapper">
+                        <img class="" src="/static/images/icons8-json-100.png" alt="json">
                     </div>
                 </div>
-                {% endfor %}
+            </div>
             {% endfor %}
         </div>
 
