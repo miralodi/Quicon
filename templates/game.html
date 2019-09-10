@@ -1,8 +1,69 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 {% endblock %}
 
 {% block content %}
+<div class="container text-center p-3">
+
+    <div class="row m-2 justify-content-between">
+        <div class="col-3">
+            <h5 class="d-inline p-2">NameName</h5>
+            <span>Score: 1</span>
+        </div>
+
+        <h5 class="col-3 d-inline">Time</h5>
+
+        <div class="col-3">
+            <h5 class="d-inline p-2">NameXY</h5>
+            <span>Score: 1</span>
+        </div>
+    </div>
+
+    <div class="row justify-content-around">
+
+        <div class="col-2">
+            {% for counter in range(0, 5) %}
+            <div class="card mt-1 shadow">
+                <div class="card-horizontal align-items-center">
+                    <div class="img-square-wrapper">
+                        <img class="" src="/static/images/icons8-visual-studio-96.png" alt="vsc">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Key</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-4 card-horizontal align-items-center">
+            <img width="120x" class="shadow" src="/static/images/icons8-javascript-100.png" alt="js">
+        </div>
+
+        <div class="col-2">
+            {% for counter in range(0, 5) %}
+            <div class="card mt-1 shadow">
+                <div class="card-horizontal align-items-center">
+                    <div class="card-body">
+                        <p class="card-text">Kex</p>
+                    </div>
+                    <div class="img-square-wrapper">
+                        <img class="" src="/static/images/icons8-json-100.png" alt="json">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <footer>
+        <button type="button" class="btn btn-info">Restart</button>
+        <button type="button" class="btn btn-primary">Reset settings</button>
+    </footer>
+</div>
+
 {% endblock %}
