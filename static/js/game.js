@@ -1,4 +1,8 @@
-document.getElementById('restart').addEventListener('click', retry);
+try {
+    document.getElementById('restart').addEventListener('click', retry);
+} catch (error) {
+}
+
 function retry() {
     window.location.reload();
 }
@@ -9,11 +13,17 @@ function getRandomLink() {
     let randomLink = images[Math.floor(Math.random() * images.length)];
     return randomLink
 }
-let players = document.querySelectorAll('.players');
-for (let player of players) {
-    player.addEventListener('click', highlight)
+
+try {
+    let players = document.querySelectorAll('.players');
+    for (let player of players) {
+        player.addEventListener('click', highlight)
+    }
+} catch (error) {
 }
 
 function highlight(event) {
     event.target.select();
 }
+
+getRandomLink();
