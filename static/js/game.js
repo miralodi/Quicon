@@ -61,8 +61,7 @@ function getCards(){
     let player2Cards = document.querySelectorAll('.player-2-card');
     getPlayerCards(player1Cards, middleCard);
     getPlayerCards(player2Cards, middleCard);
-
-
 }
+
 
 main();
