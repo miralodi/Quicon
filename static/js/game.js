@@ -15,7 +15,8 @@ function main() {
 
     }
 
-    getCards()
+    getCards();
+    document.addEventListener('keydown', inputKeyUp);
 
 }
 
@@ -64,5 +65,17 @@ function getCards(){
 
 
 }
+
+
+function compareCards(card1, card2) {
+
+}
+
+function inputKeyUp(event) {
+    if (event.key == 'a') {
+        console.log('vüzdrszüd')
+    }
+}
+
 
 main();
