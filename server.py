@@ -10,18 +10,15 @@ def index():
     return render_template('index.html')
 
 
-def getFiles():
-    mypath = 'static/images/'
-    files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-    result = []
-    for file in files:
-        result.append(mypath + file)
-    return result
+def get_files():
+    my_path = 'static/images/'
+    files = [join(my_path, f) for f in listdir(my_path) if isfile(join(my_path, f))]
+    return files
 
 
 @app.route('/game')
 def game():
-    files = getFiles()
+    files = get_files()
     player_1_keys = ["W", "S", "X", "E", "D"]
     player_2_keys = ["U", "J", "M", "I", "K"]
     difficulty = int(request.args.get('difficulty', 4))
