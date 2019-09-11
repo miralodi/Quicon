@@ -10,28 +10,28 @@
     <div class="row m-2 justify-content-between">
         <div class="col-3">
             <h5 class="d-inline p-2">{{ player_1 }}</h5>
-            <span>Score: {{ score_1 }}</span>
+            <span id="score1" >Score: 0</span>
         </div>
 
         <h5 class="col-3 d-inline">Time</h5>
 
         <div class="col-3">
-            <span>Score: {{ score_2 }}</span>
+            <span id="score2" >Score: 0</span>
             <h5 class="d-inline p-2">{{ player_2 }}</h5>
         </div>
     </div>
 
     <div class="row justify-content-around">
 
-        <div class="col-2">
-            {% for key in player_1_keys %}
+        <div id="player_1" class="col-2" data-keys1='{{ player_1_keys|tojson }}'>
+            {% for key_1 in player_1_keys %}
             <div class="card mt-1 shadow">
                 <div class="card-horizontal align-items-center">
                     <div class="img-square-wrapper">
-                        <img class="player-1-card">
+                        <img class="player-1-card" id="{{ key_1 }}">
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{ key }}</p>
+                        <p class="card-text">{{ key_1 }}</p>
                     </div>
                 </div>
             </div>
@@ -39,18 +39,18 @@
         </div>
 
         <div class="col-4 card-horizontal align-items-center">
-            <img width="120x" class="middle-pic shadow">
+            <img width="120x" class="middle-card shadow">
         </div>
 
-        <div class="col-2">
-            {% for key in player_2_keys %}
+        <div id="player_2" class="col-2" data-keys2='{{ player_2_keys|tojson }}'>
+            {% for key_2 in player_2_keys %}
             <div class="card mt-1 shadow">
                 <div class="card-horizontal align-items-center">
                     <div class="card-body">
-                        <p class="card-text">{{ key }}</p>
+                        <p class="card-text">{{ key_2 }}</p>
                     </div>
                     <div class="img-square-wrapper">
-                        <img class="player-2-card">
+                        <img class="player-2-card" id="{{ key_2 }}">
                     </div>
                 </div>
             </div>
