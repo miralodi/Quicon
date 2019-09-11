@@ -1,6 +1,18 @@
-try {
-    document.getElementById('restart').addEventListener('click', retry);
-} catch (error) {
+function main() {
+
+    try {
+        document.getElementById('restart').addEventListener('click', retry);
+    } catch (error) {
+    }
+
+    try {
+        let players = document.querySelectorAll('.players');
+        for (let player of players) {
+            player.addEventListener('click', highlight)
+        }
+    } catch (error) {
+    }
+
 }
 
 function retry() {
@@ -14,16 +26,8 @@ function getRandomLink() {
     return randomLink
 }
 
-try {
-    let players = document.querySelectorAll('.players');
-    for (let player of players) {
-        player.addEventListener('click', highlight)
-    }
-} catch (error) {
-}
-
 function highlight(event) {
     event.target.select();
 }
 
-getRandomLink();
+main();
