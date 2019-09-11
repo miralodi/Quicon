@@ -85,8 +85,17 @@ function main() {
             let card = document.querySelector(`#${keyPressed}`);
             if (middleCard.getAttribute('src') == card.getAttribute('src')) {
                 score1++;
+                document.querySelector('#score1').classList.add("match");
+                setTimeout(function () {
+                    document.querySelector('#score1').removeAttribute('class');
+                    getCards();
+                }, 200);
             } else {
                 score1--;
+                document.querySelector('#score1').classList.add("dismatch");
+                setTimeout(function () {
+                    document.querySelector('#score1').removeAttribute('class');
+                }, 200);
             }
             document.querySelector('#score1').innerHTML = `Score: ${score1}`;
         }
@@ -94,10 +103,28 @@ function main() {
             let card = document.querySelector(`#${keyPressed}`);
             if (middleCard.getAttribute('src') == card.getAttribute('src')) {
                 score2++;
+                document.querySelector('#score2').classList.add("match");
+                setTimeout(function () {
+                    document.querySelector('#score2').removeAttribute('class');
+                    getCards();
+                }, 200);
             } else {
                 score2--;
+                document.querySelector('#score2').classList.add("dismatch");
+                setTimeout(function () {
+                    document.querySelector('#score2').removeAttribute('class');
+                }, 200);
             }
             document.querySelector('#score2').innerHTML = `Score: ${score2}`;
+        }
+    }
+
+    function sleep(milliseconds) {
+        let start = new Date().getTime();
+        for (let i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
         }
     }
 
