@@ -5,8 +5,10 @@ function main() {
 
     let counter = {};
     window.addEventListener("load", function () {
-        counter.end = document.getElementById('time').dataset.time;
-
+        const time = document.getElementById('time').dataset.time;
+        console.log(typeof (time))
+        counter.end = time.slice(0, 2) * 60 + parseInt(time.slice(3));
+        console.log(counter.end)
         // Get the containers
         counter.min = document.getElementById("cd-min");
         counter.sec = document.getElementById("cd-sec");

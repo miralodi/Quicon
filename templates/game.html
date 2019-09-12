@@ -12,8 +12,8 @@
             <h2 class="d-inline">{{ player_1 }}</h2>
         </div>
 
-        <h2 id="time" data-time="{{ time_in_sec }}" class="col-3 d-inline">Time:
-            <span id="cd-min" class="text-center"></span>:<span id="cd-sec" class="text-center">)</span>
+        <h2 id="time" data-time="{{ time }}" class="col-3 d-inline">Time:
+            <span id="cd-min" id="data-time" class="text-center">{{ time[:2] }}</span>:<span id="cd-sec" class="text-center">{{ time[3:] }}</span>
         </h2>
 
         <div class="col-3">
