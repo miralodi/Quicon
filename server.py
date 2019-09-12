@@ -19,8 +19,8 @@ def get_files():
 @app.route('/game')
 def game():
     files = get_files()
-    player_1_keys = ["W", "S", "X", "E", "D"]
-    player_2_keys = ["U", "J", "M", "I", "K"]
+    player_1_keys = ["Q", "W", "E", "R", "A"]
+    player_2_keys = ["U", "I", "O", "P", "J"]
     difficulty = int(request.args.get('difficulty', 4))
     player_1_keys_by_difficulty = player_1_keys[:difficulty]
     player_2_keys_by_difficulty = player_2_keys[:difficulty]
