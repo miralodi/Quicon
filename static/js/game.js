@@ -7,7 +7,7 @@ function main() {
     window.addEventListener("load", function () {
         const time = document.getElementById('time').dataset.time;
         console.log(typeof (time))
-        counter.end = time.slice(0, 2) * 60 + parseInt(time.slice(3));
+        counter.end = time.slice(0, 1) * 60 + parseInt(time.slice(2));
         console.log(counter.end)
         // Get the containers
         counter.min = document.getElementById("cd-min");

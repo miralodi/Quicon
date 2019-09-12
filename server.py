@@ -24,7 +24,7 @@ def game():
     difficulty = int(request.args.get('difficulty', 4))
     player_1_keys_by_difficulty = player_1_keys[:difficulty]
     player_2_keys_by_difficulty = player_2_keys[:difficulty]
-    time = request.args.get('time', '00:30')
+    time = request.args.get('time', '0:30')
     player_1 = request.args.get('player_1', "Player 1")
     player_2 = request.args.get('player_2', "Player 2")
     return render_template('game.html',
