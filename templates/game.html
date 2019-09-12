@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<div id="file-container" data-files='{{ files|tojson }}' class="container text-center p-3">
+<div id="file-container" data-files='{{ files|tojson }}' class="p-2 container text-center">
 
-    <div class="row m-2 justify-content-between">
+    <div class="p-2 rounded text-light bg-info row m-2 justify-content-between shadow ">
         <div class="col-3">
-            <h5 class="d-inline p-2">{{ player_1 }}</h5>
-            <span id="score1">Score: 0</span>
+            <h2 class="d-inline">{{ player_1 }}</h2>
         </div>
 
-        <h5 class="col-3 d-inline">Time</h5>
+        <h2 id="time" data-time="{{ time_in_sec }}" class="col-3 d-inline">Time:
+            <span id="cd-min" class="text-center"></span>:<span id="cd-sec" class="text-center">)</span>
+        </h2>
 
         <div class="col-3">
-            <span id="score2" >Score: 0</span>
-            <h5 class="d-inline p-2">{{ player_2 }}</h5>
+            <h2 class="d-inline">{{ player_2 }}</h2>
         </div>
     </div>
 
@@ -38,8 +38,10 @@
             {% endfor %}
         </div>
 
-        <div class="col-4 card-horizontal align-items-center">
-            <img width="120x" class="middle-card shadow">
+        <div id="middle-display" class=" col-5 card-horizontal align-items-center">
+            <span class="display-3 p-4 m-3" data-player1="{{ player_1 }}" id="score1">0</span>
+            <img id="middle-card" width="120x" class="middle-card shadow">
+            <span class="display-3 p-4 m-3" data-player2="{{ player_2 }}" id="score2">0</span>
         </div>
 
         <div id="player_2" class="col-2" data-keys2='{{ player_2_keys|tojson }}'>

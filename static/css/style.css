@@ -2,11 +2,3 @@
     display: flex;
     justify-content: center;
 }
-
-.match {
-    background: lawngreen;
-}
-
-.dismatch {
-    background: red;
-}

@@ -3,11 +3,47 @@ function main() {
     let score1 = 0;
     let score2 = 0;
 
+    let counter = {};
+    window.addEventListener("load", function () {
+        counter.end = document.getElementById('time').dataset.time;
+
+        // Get the containers
+        counter.min = document.getElementById("cd-min");
+        counter.sec = document.getElementById("cd-sec");
+
+        // Start if not past end date
+        if (counter.end > 0) {
+            counter.ticker = setInterval(function () {
+                // Stop if passed end time
+                counter.end--;
+                if (counter.end <= 0) {
+                    clearInterval(counter.ticker);
+                    gameOver();
+                }
+
+                // Calculate remaining time
+                let secs = counter.end;
+                let mins = Math.floor(secs / 60); // 1 min = 60 secs
+                secs -= mins * 60;
+
+                // Update HTML
+                counter.min.innerHTML = mins;
+                if (secs.toString().length == 1) {
+                    counter.sec.innerHTML = `0${secs}`;
+                } else {
+                    counter.sec.innerHTML = secs;
+                }
+            }, 1000);
+        }
+    });
+
+
     try {
         document.getElementById('restart').addEventListener('click', retry);
     } catch (error) {
 
     }
+
 
     try {
         let players = document.querySelectorAll('.players');
@@ -85,49 +121,59 @@ function main() {
             let card = document.querySelector(`#${keyPressed}`);
             if (middleCard.getAttribute('src') == card.getAttribute('src')) {
                 score1++;
-                document.querySelector('#score1').classList.add("match");
+                document.querySelector('#score1').classList.add("match", "bg-success");
                 setTimeout(function () {
-                    document.querySelector('#score1').removeAttribute('class');
+                    document.querySelector('#score1').classList.remove("match", "bg-success");
                     getCards();
                 }, 200);
             } else {
                 score1--;
-                document.querySelector('#score1').classList.add("dismatch");
+                document.querySelector('#score1').classList.add("dismatch", "bg-danger");
                 setTimeout(function () {
-                    document.querySelector('#score1').removeAttribute('class');
+                    document.querySelector('#score1').classList.remove("dismatch", "bg-danger");
                 }, 200);
             }
-            document.querySelector('#score1').innerHTML = `Score: ${score1}`;
+            document.querySelector('#score1').innerHTML = `${score1}`;
         }
         if (player_2_keys.includes(keyPressed)) {
             let card = document.querySelector(`#${keyPressed}`);
             if (middleCard.getAttribute('src') == card.getAttribute('src')) {
                 score2++;
-                document.querySelector('#score2').classList.add("match");
+                document.querySelector('#score2').classList.add("match", "bg-success");
                 setTimeout(function () {
-                    document.querySelector('#score2').removeAttribute('class');
+                    document.querySelector('#score2').classList.remove("match", "bg-success");
                     getCards();
                 }, 200);
             } else {
                 score2--;
-                document.querySelector('#score2').classList.add("dismatch");
+                document.querySelector('#score2').classList.add("dismatch", "bg-danger");
                 setTimeout(function () {
-                    document.querySelector('#score2').removeAttribute('class');
+                    document.querySelector('#score2').classList.remove("dismatch","bg-danger" );
                 }, 200);
             }
-            document.querySelector('#score2').innerHTML = `Score: ${score2}`;
+            document.querySelector('#score2').innerHTML = `${score2}`;
         }
     }
-
-    function sleep(milliseconds) {
-        let start = new Date().getTime();
-        for (let i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds) {
-                break;
-            }
+    
+    function gameOver() {
+        document.removeEventListener("keydown", compareCards);
+        let winnerMessageContainer = document.createElement("div");
+        const player1 = document.getElementById('score1').dataset.player1;
+        const player2 = document.getElementById('score2').dataset.player2;
+        let gameOverMessage;
+        if (score1 !== score2) {
+            const winner = score1 > score2 ? player1 : player2;
+            gameOverMessage = `The winner is ${winner}!`;
+        } else {
+            gameOverMessage = 'It is a tie!';
         }
+        winnerMessageContainer.innerHTML = `<h4>${gameOverMessage}</h4>`;
+        winnerMessageContainer.classList.add("game-over-message", "card", "p-2", "shadow", "bg-primary", "text-light");
+        const container = document.getElementById("middle-display");
+        container.insertBefore(winnerMessageContainer, container.children[1]);
+        const toRemove = document.getElementById("middle-card");
+        container.removeChild(toRemove);
     }
-
 
 }
 
