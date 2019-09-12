@@ -24,7 +24,7 @@ def game():
     difficulty = int(request.args.get('difficulty', 4))
     player_1_keys_by_difficulty = player_1_keys[:difficulty]
     player_2_keys_by_difficulty = player_2_keys[:difficulty]
-    time = request.args.get('time', '00:05')
+    time = request.args.get('time', '00:30')
     mins = int(time[:2])
     secs = int(time[3:])
     time_in_sec = mins * 60 + secs
