@@ -6,9 +6,7 @@ function main() {
     let counter = {};
     window.addEventListener("load", function () {
         const time = document.getElementById('time').dataset.time;
-        console.log(typeof (time))
         counter.end = time.slice(0, 1) * 60 + parseInt(time.slice(2));
-        console.log(counter.end)
         // Get the containers
         counter.min = document.getElementById("cd-min");
         counter.sec = document.getElementById("cd-sec");
@@ -30,11 +28,8 @@ function main() {
 
                 // Update HTML
                 counter.min.innerHTML = mins;
-                if (secs.toString().length == 1) {
-                    counter.sec.innerHTML = `0${secs}`;
-                } else {
-                    counter.sec.innerHTML = secs;
-                }
+                counter.sec.innerHTML = (secs < 10 ? '0' : '') + secs;
+
             }, 1000);
         }
     });
@@ -42,28 +37,15 @@ function main() {
 
     try {
         document.getElementById('restart').addEventListener('click', retry);
-    } catch (error) {
-
-    }
-
-
-    try {
         let players = document.querySelectorAll('.players');
         for (let player of players) {
             player.addEventListener('click', highlight)
         }
-    } catch (error) {
-
-    }
-
-
-    try {
         getCards();
         document.addEventListener('keydown', compareCards);
     } catch (error) {
-
+        console.log(error.message);
     }
-
 
     function retry() {
         window.location.reload();
@@ -110,53 +92,49 @@ function main() {
 
     }
 
-
     function compareCards(event) {
-        let player_1_keys = document.getElementById('player_1').dataset.keys1;
-        player_1_keys = JSON.parse(player_1_keys);
-        let player_2_keys = document.getElementById('player_2').dataset.keys2;
-        player_2_keys = JSON.parse(player_2_keys);
+
+
+        let player_1_data = document.getElementById('player_1').dataset;
+        let player_2_keys = document.getElementById('player_2').dataset;
+        score1 = handlePlayerKeyPress(player_1_data, score1);
+        score2 = handlePlayerKeyPress(player_2_keys, score2);
+    }
+
+    function handlePlayerKeyPress(playerData, score) {
+        let player_keys = JSON.parse(playerData.keys);
+        let player_id = JSON.parse(playerData.userId);
+
         let keyPressed = event.key.toUpperCase();
         let middleCard = document.querySelector('.middle-card');
 
-        if (player_1_keys.includes(keyPressed)) {
+        if (middleCard.dataset.foundIt === '1') {
+            return score;
+        }
+
+        if (player_keys.includes(keyPressed)) {
             let card = document.querySelector(`#${keyPressed}`);
-            if (middleCard.getAttribute('src') == card.getAttribute('src')) {
-                score1++;
-                document.querySelector('#score1').classList.add("match", "bg-success");
+            if (middleCard.getAttribute('src') === card.getAttribute('src')) {
+                middleCard.dataset.foundIt = '1';
+                score++;
+                document.querySelector(`#score${player_id}`).classList.add("match", "bg-success");
                 setTimeout(function () {
-                    document.querySelector('#score1').classList.remove("match", "bg-success");
+                    document.querySelector(`#score${player_id}`).classList.remove("match", "bg-success");
+                    middleCard.dataset.foundIt = '0';
                     getCards();
                 }, 200);
             } else {
-                score1--;
-                document.querySelector('#score1').classList.add("dismatch", "bg-danger");
+                score--;
+                document.querySelector(`#score${player_id}`).classList.add("dismatch", "bg-danger");
                 setTimeout(function () {
-                    document.querySelector('#score1').classList.remove("dismatch", "bg-danger");
+                    document.querySelector(`#score${player_id}`).classList.remove("dismatch", "bg-danger");
                 }, 200);
             }
-            document.querySelector('#score1').innerHTML = `${score1}`;
+            document.querySelector(`#score${player_id}`).innerHTML = `${score}`;
         }
-        if (player_2_keys.includes(keyPressed)) {
-            let card = document.querySelector(`#${keyPressed}`);
-            if (middleCard.getAttribute('src') == card.getAttribute('src')) {
-                score2++;
-                document.querySelector('#score2').classList.add("match", "bg-success");
-                setTimeout(function () {
-                    document.querySelector('#score2').classList.remove("match", "bg-success");
-                    getCards();
-                }, 200);
-            } else {
-                score2--;
-                document.querySelector('#score2').classList.add("dismatch", "bg-danger");
-                setTimeout(function () {
-                    document.querySelector('#score2').classList.remove("dismatch","bg-danger" );
-                }, 200);
-            }
-            document.querySelector('#score2').innerHTML = `${score2}`;
-        }
+        return score;
     }
-    
+
     function gameOver() {
         document.removeEventListener("keydown", compareCards);
         let winnerMessageContainer = document.createElement("div");

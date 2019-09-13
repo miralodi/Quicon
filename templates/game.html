@@ -23,7 +23,7 @@
 
     <div class="row justify-content-around">
 
-        <div id="player_1" class="col-2" data-keys1='{{ player_1_keys|tojson }}'>
+        <div id="player_1" class="col-2" data-keys='{{ player_1_keys|tojson }}' data-user-id="1">
             {% for key_1 in player_1_keys %}
             <div class="card mt-1 shadow">
                 <div class="card-horizontal align-items-center">
@@ -44,7 +44,7 @@
             <span class="display-3 p-4 m-3" data-player2="{{ player_2 }}" id="score2">0</span>
         </div>
 
-        <div id="player_2" class="col-2" data-keys2='{{ player_2_keys|tojson }}'>
+        <div id="player_2" class="col-2" data-keys='{{ player_2_keys|tojson }}' data-user-id="2">
             {% for key_2 in player_2_keys %}
             <div class="card mt-1 shadow">
                 <div class="card-horizontal align-items-center">
@@ -66,5 +66,4 @@
         <a href="/" class="btn btn-primary">Reset settings</a>
     </footer>
 </div>
-
 {% endblock %}
