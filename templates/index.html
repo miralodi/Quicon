@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+        <script src="{{ url_for('static', filename='js/start.js') }}" defer></script>
+{% endblock %}
+
 {% block content %}
 <div class="row h-100 p-4 text-center justify-content-center">
     <form class="col-4 bg-info text-white rounded shadow-lg p-4" action="/game" method="GET">
