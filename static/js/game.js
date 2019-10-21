@@ -51,9 +51,9 @@ function main() {
 
     function compareCards() {
         let player_1_data = document.querySelector('#player_1').dataset;
-        let player_2_keys = document.querySelector('#player_2').dataset;
+        let player_2_data = document.querySelector('#player_2').dataset;
         score1 = handlePlayerKeyPress(player_1_data, score1);
-        score2 = handlePlayerKeyPress(player_2_keys, score2);
+        score2 = handlePlayerKeyPress(player_2_data, score2);
     }
 
 
