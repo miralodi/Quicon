@@ -6,10 +6,6 @@ function main() {
     let counter = {};
     window.addEventListener("load", timer(counter, gameOver));
     document.querySelector('#restart').addEventListener('click', retry);
-    let players = document.querySelectorAll('.players');
-    for (let player of players) {
-        player.addEventListener('click', highlight)
-    }
     getCards();
     document.addEventListener('keydown', compareCards);
 
