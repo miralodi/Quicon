@@ -59,7 +59,7 @@ function main() {
 
     function handlePlayerKeyPress(playerData, score) {
         let player_keys = JSON.parse(playerData.keys);
-        let player_id = JSON.parse(playerData.userId);
+        let player_id = playerData.userId;
 
         let keyPressed = event.key.toUpperCase();
         let middleCard = document.querySelector('.middle-card');
