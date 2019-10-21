@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-        <script src="{{ url_for('static', filename='js/start.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/start.js') }}" defer></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
 {% endblock %}
 
 {% block content %}
@@ -37,10 +39,21 @@
                 <option value="2:00">2:00</option>
             </select>
 
+            {% for deck_theme in deck_themes %}
+            <div class="deck-themes">
+                <img src="{{ deck_theme['img']}}"><br>
+                <label for="{{ deck_theme['name'] }}">{{ deck_theme['name'] }}</label>
+                <input type="checkbox" name="deck_theme" id="{{ deck_theme['name'] }}" value="{{ deck_theme['name'] }}">
+            </div>
+            {% endfor %}
+
         </div>
+
 
         <button class="btn btn-primary" type="submit">Let's go!</button>
     </form>
 
 </div>
+
+
 {% endblock %}

@@ -2,3 +2,9 @@
     display: flex;
     justify-content: center;
 }
+
+.deck-themes {
+    padding-top: 20px;
+    display: inline-block;
+    width: 30%;
+}
