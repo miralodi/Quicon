@@ -50,16 +50,16 @@ function main() {
 
 
     function compareCards() {
-        let player_1_data = document.querySelector('#player_1').dataset;
-        let player_2_data = document.querySelector('#player_2').dataset;
-        score1 = handlePlayerKeyPress(player_1_data, score1);
-        score2 = handlePlayerKeyPress(player_2_data, score2);
+        let player1Data = document.querySelector('#player-1').dataset;
+        let player2Data = document.querySelector('#player-2').dataset;
+        score1 = handlePlayerKeyPress(player1Data, score1);
+        score2 = handlePlayerKeyPress(player2Data, score2);
     }
 
 
     function handlePlayerKeyPress(playerData, score) {
-        let player_keys = JSON.parse(playerData.keys);
-        let player_id = playerData.userId;
+        let playerKeys = JSON.parse(playerData.keys);
+        let playerId = playerData.userId;
 
         let keyPressed = event.key.toUpperCase();
         let middleCard = document.querySelector('.middle-card');
@@ -68,25 +68,25 @@ function main() {
             return score;
         }
 
-        if (player_keys.includes(keyPressed)) {
+        if (playerKeys.includes(keyPressed)) {
             let card = document.querySelector(`#${keyPressed}`);
             if (middleCard.getAttribute('src') === card.getAttribute('src')) {
                 middleCard.dataset.foundIt = '1';
                 score++;
-                document.querySelector(`#score${player_id}`).classList.add("match", "bg-success");
+                document.querySelector(`#score${playerId}`).classList.add("match", "bg-success");
                 setTimeout(function () {
-                    document.querySelector(`#score${player_id}`).classList.remove("match", "bg-success");
+                    document.querySelector(`#score${playerId}`).classList.remove("match", "bg-success");
                     middleCard.dataset.foundIt = '0';
                     getCards();
                 }, 200);
             } else {
                 score--;
-                document.querySelector(`#score${player_id}`).classList.add("dismatch", "bg-danger");
+                document.querySelector(`#score${playerId}`).classList.add("dismatch", "bg-danger");
                 setTimeout(function () {
-                    document.querySelector(`#score${player_id}`).classList.remove("dismatch", "bg-danger");
+                    document.querySelector(`#score${playerId}`).classList.remove("dismatch", "bg-danger");
                 }, 200);
             }
-            document.querySelector(`#score${player_id}`).innerHTML = `${score}`;
+            document.querySelector(`#score${playerId}`).innerHTML = `${score}`;
         }
         return score;
     }
