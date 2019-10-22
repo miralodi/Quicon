@@ -94,22 +94,14 @@ function main() {
 
     function gameOver() {
         document.removeEventListener("keydown", compareCards);
-        let winnerMessageContainer = document.createElement("div");
         const player1 = document.querySelector('#score1').dataset.player1;
         const player2 = document.querySelector('#score2').dataset.player2;
-        let gameOverMessage;
+        let modalBody = document.querySelector('#winner');
         if (score1 !== score2) {
-            const winner = score1 > score2 ? player1 : player2;
-            gameOverMessage = `The winner is ${winner}!`;
+            modalBody.innerHTML = score1 > score2 ? player1 : player2;
         } else {
-            gameOverMessage = 'It is a tie!';
+            modalBody.innerHTML = 'It is a tie!';
         }
-        // winnerMessageContainer.innerHTML = `<h4>${gameOverMessage}</h4>`;
-        // winnerMessageContainer.classList.add("game-over-message", "card", "p-2", "shadow", "bg-primary", "text-light");
-        // const container = document.querySelector("#middle-display");
-        // container.insertBefore(winnerMessageContainer, container.children[1]);
-        // const toRemove = document.querySelector("#middle-card");
-        // container.removeChild(toRemove);
         $('#winnerModal').modal('show');
     }
 
