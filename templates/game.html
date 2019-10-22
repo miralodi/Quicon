@@ -1,88 +1,99 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-<script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
-<div id="file-container" data-files='{{ files|tojson }}' class="p-2 container text-center">
+    <div id="file-container" data-files='{{ files|tojson }}' class="container text-center col-8 p-2">
 
-    <div class="p-2 rounded text-light bg-info row m-2 justify-content-between shadow ">
-        <div class="col-3">
-            <h2 class="d-inline">{{ player_1 }}</h2>
-        </div>
-
-        <h2 id="time-container" class="col-3 d-inline">Time:
-            <span id="timer" data-time="{{ time }}">
-                    <span id="cd-min" class="text-center">{{ time[:1] }}</span>:<span id="cd-sec" class="text-center">{{ time[2:] }}</span>
+        <div class="row rounded text-light bg-info shadow m-2">
+            <div class="col-3 p-2">
+                <h3 class="d-inline">{{ player_1 }}</h3>
+            </div>
+            <div class="col-6 p-2">
+                <h3 id="time-container" class="row d-inline">Time:
+                    <span id="timer" data-time="{{ time }}">
+                    <span id="cd-min" class="text-center">{{ time[:1] }}</span>:<span id="cd-sec"
+                                                                                      class="text-center">{{ time[2:] }}</span>
                 </span>
-        </h2>
-
-        <div class="col-3">
-            <h2 class="d-inline">{{ player_2 }}</h2>
+                </h3>
+            </div>
+            <div class="col-3 p-2">
+                <h3 class="d-inline">{{ player_2 }}</h3>
+            </div>
         </div>
-    </div>
 
-    <div class="row justify-content-around">
+        <div class="playing-field row text-light rounded shadow m-3 p-3">
 
-        <div id="player-1" class="col-2" data-keys='{{ player_1_keys|tojson }}' data-user-id="1">
-            {% for key_1 in player_1_keys %}
-            <div class="card mt-1 shadow">
-                <div class="card-horizontal align-items-center">
+            <div id="player-1" class="col-3" data-keys='{{ player_1_keys|tojson }}' data-user-id="1">
+                {% for key_1 in player_1_keys %}
+                    <div class="card-horizontal mt-2 shadow-sm bg-white rounded card-key">
+
+                        <div class="img-square-wrapper">
+                            <img width="100" class="player-1-card p-3" id="{{ key_1 }}">
+                        </div>
+
+                        <div class="card-body my-auto">
+                            <h4 class="card-text">{{ key_1 }}</h4>
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="col-6 my-auto">
+                <div id="middle-display" class="card-horizontal p-3">
+                    <div class="display-3 p-2 m-2 text-white" data-player1="{{ player_1 }}" id="score1">0</div>
                     <div class="img-square-wrapper">
-                        <img class="player-1-card" id="{{ key_1 }}">
+                        <img id="middle-card" width="120x" class="middle-card rounded shadow-sm p-3 bg-white">
                     </div>
-                    <div class="card-body">
-                        <p class="card-text">{{ key_1 }}</p>
-                    </div>
+                    <div class="display-3 p-2 m-2 text-white" data-player2="{{ player_2 }}" id="score2">0</div>
+
                 </div>
             </div>
-            {% endfor %}
+
+            <div id="player-2" class="col-3" data-keys='{{ player_2_keys|tojson }}' data-user-id="2">
+                {% for key_2 in player_2_keys %}
+                    <div class="card-horizontal mt-2 shadow-sm bg-light rounded card-key">
+
+                        <div class="card-body my-auto">
+                            <h4 class="card-text">{{ key_2 }}</h4>
+                        </div>
+
+                        <div class="img-square-wrapper">
+                            <img width="100" class="player-2-card p-3" id="{{ key_2 }}">
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+
         </div>
 
-        <div id="middle-display" class=" col-5 card-horizontal align-items-center">
-            <span class="display-3 p-4 m-3" data-player1="{{ player_1 }}" id="score1">0</span>
-            <img id="middle-card" width="120x" class="middle-card shadow">
-            <span class="display-3 p-4 m-3" data-player2="{{ player_2 }}" id="score2">0</span>
-        </div>
+        <footer>
+            <button id="restart" type="button" class="btn btn-info">Restart</button>
+            <a href="/" class="btn btn-primary">Reset settings</a>
+        </footer>
+    </div>
 
-        <div id="player-2" class="col-2" data-keys='{{ player_2_keys|tojson }}' data-user-id="2">
-            {% for key_2 in player_2_keys %}
-            <div class="card mt-1 shadow">
-                <div class="card-horizontal align-items-center">
-                    <div class="card-body">
-                        <p class="card-text">{{ key_2 }}</p>
-                    </div>
-                    <div class="img-square-wrapper">
-                        <img class="player-2-card" id="{{ key_2 }}">
-                    </div>
+    <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">The winner is...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h1 id="winner"></h1>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-
-    </div>
-
-    <footer>
-        <button id="restart" type="button" class="btn btn-info">Restart</button>
-        <a href="/" class="btn btn-primary">Reset settings</a>
-    </footer>
-</div>
-
-<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">The winner is...</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <h1 id="winner"></h1>
-            </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -1,5 +1,14 @@
-.form-container{
+.form-container {
     background-color: #3D849E
+}
+
+.playing-field {
+    background-color: #D3D3D3;
+}
+
+.card-key {
+    color: #3D849E;
+
 }
 
 .card-horizontal {
