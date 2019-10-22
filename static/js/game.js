@@ -98,7 +98,7 @@ function main() {
         const player2 = document.querySelector('#score2').dataset.player2;
         let modalBody = document.querySelector('#winner');
         if (score1 !== score2) {
-            modalBody.innerHTML = score1 > score2 ? player1 : player2;
+            modalBody.innerHTML = `The winner is ${score1 > score2 ? player1 : player2}!`;
         } else {
             modalBody.innerHTML = 'It is a tie!';
         }

@@ -46,11 +46,11 @@
 
             <div class="col-6 my-auto">
                 <div id="middle-display" class="card-horizontal p-3">
-                    <div class="display-3 p-2 m-2 text-white" data-player1="{{ player_1 }}" id="score1">0</div>
+                    <div class="display-3 p-2 m-2 text-white rounded" data-player1="{{ player_1 }}" id="score1">0</div>
                     <div class="img-square-wrapper">
                         <img id="middle-card" width="120x" class="middle-card rounded shadow-sm p-3 bg-white">
                     </div>
-                    <div class="display-3 p-2 m-2 text-white" data-player2="{{ player_2 }}" id="score2">0</div>
+                    <div class="display-3 p-2 m-2 text-white rounded" data-player2="{{ player_2 }}" id="score2">0</div>
 
                 </div>
             </div>
@@ -84,13 +84,12 @@
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">The winner is...</h5>
+                <div class="modal-header bg-light">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body text-center bg-info text-white">
                     <h1 id="winner"></h1>
                 </div>
             </div>
