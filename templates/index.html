@@ -8,9 +8,9 @@
 
 {% block content %}
     <div class="p-3 text-center d-flex justify-content-center">
-            <form class="form-container col-9 text-white rounded shadow p-3" action="{{ url_for('game') }}" method="GET">
+            <form class="form-container bg-info col-9 text-white rounded shadow p-3" action="{{ url_for('game') }}" method="GET">
             <h1 class="p-2">Quicon</h1>
-                <div class="row rounded shadow-sm p-3 m-3 bg-info">
+                <div class="row rounded shadow-sm p-3 m-3 game-conditions">
                     <div class="col-3">
                         <label for="player-1">Player 1</label>
                         <input type="text" class="form-control players" id="player-1" name="player_1" value="Player1"
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="rounded shadow-sm m-3 p-1 bg-info">
+                <div class="themes rounded shadow-sm m-3 p-1">
                     <h5 class="pt-2">Themes</h5>
                     <div class="row text-center justify-content-center">
                         {% for deck_theme in deck_themes %}

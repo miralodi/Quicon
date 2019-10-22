@@ -1,9 +1,5 @@
-.form-container {
-    background-color: #3D849E
-}
-
-.playing-field {
-    background-color: #D3D3D3;
+.playing-field, .game-conditions, .themes  {
+    background-color: darkseagreen;
 }
 
 .card-key {
