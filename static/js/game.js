@@ -115,7 +115,7 @@ function main() {
 
     function timer(counter, gameOver) {
         return function () {
-            const time = document.querySelector('#time').dataset.time;
+            const time = document.querySelector('#timer').dataset.time;
             counter.end = time.slice(0, 1) * 60 + parseInt(time.slice(2));
             // Get the containers
             counter.min = document.querySelector("#cd-min");
@@ -136,6 +136,10 @@ function main() {
                     let mins = Math.floor(secs / 60); // 1 min = 60 secs
                     secs -= mins * 60;
 
+                    if (secs < 6 && mins === 0) {
+                        coloringTimer();
+                    }
+
                     // Update HTML
                     counter.min.innerHTML = mins;
                     counter.sec.innerHTML = (secs < 10 ? '0' : '') + secs;
@@ -143,6 +147,14 @@ function main() {
                 }, 1000);
             }
         };
+    }
+
+    function coloringTimer() {
+        let timer = document.querySelector('#timer');
+        timer.classList.add('red-colored');
+        setTimeout(function () {
+            timer.classList.remove('red-colored')
+        }, 500);
     }
 }
 
