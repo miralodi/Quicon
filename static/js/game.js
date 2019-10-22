@@ -104,12 +104,13 @@ function main() {
         } else {
             gameOverMessage = 'It is a tie!';
         }
-        winnerMessageContainer.innerHTML = `<h4>${gameOverMessage}</h4>`;
-        winnerMessageContainer.classList.add("game-over-message", "card", "p-2", "shadow", "bg-primary", "text-light");
-        const container = document.querySelector("#middle-display");
-        container.insertBefore(winnerMessageContainer, container.children[1]);
-        const toRemove = document.querySelector("#middle-card");
-        container.removeChild(toRemove);
+        // winnerMessageContainer.innerHTML = `<h4>${gameOverMessage}</h4>`;
+        // winnerMessageContainer.classList.add("game-over-message", "card", "p-2", "shadow", "bg-primary", "text-light");
+        // const container = document.querySelector("#middle-display");
+        // container.insertBefore(winnerMessageContainer, container.children[1]);
+        // const toRemove = document.querySelector("#middle-card");
+        // container.removeChild(toRemove);
+        $('#winnerModal').modal('show');
     }
 
 
