@@ -2,7 +2,7 @@
     background-color: darkseagreen;
 }
 
-.card-key {
+.card-key, #winner-header {
     color: #3D849E;
 
 }

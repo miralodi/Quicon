@@ -96,9 +96,11 @@ function main() {
         document.removeEventListener("keydown", compareCards);
         const player1 = document.querySelector('#score1').dataset.player1;
         const player2 = document.querySelector('#score2').dataset.player2;
+        let winnerHeader = document.querySelector('#winner-header');
         let modalBody = document.querySelector('#winner');
         if (score1 !== score2) {
-            modalBody.innerHTML = `The winner is ${score1 > score2 ? player1 : player2}!`;
+            modalBody.innerHTML = `${score1 > score2 ? player1 : player2}!`;
+            winnerHeader.innerHTML = 'The winner is...'
         } else {
             modalBody.innerHTML = 'It is a tie!';
         }
