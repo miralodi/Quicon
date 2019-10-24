@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="p-3 text-center d-flex justify-content-center">
+    <div class="p-4 text-center d-flex justify-content-center">
             <form class="form-container bg-info col-9 text-white rounded shadow p-3" action="{{ url_for('game') }}" method="GET">
             <h1 class="p-2">Quicon</h1>
                 <div class="row rounded shadow-sm p-3 m-3 game-conditions">
@@ -44,7 +44,7 @@
                     <div class="row text-center justify-content-center">
                         {% for deck_theme in deck_themes %}
                             <div class="deck-theme">
-                                <img src="{{ deck_theme['img'] }}">
+                                <img width="80" src="{{ deck_theme['img'] }}">
                                 <div>
                                     <label for="{{ deck_theme['name'] }}">{{ deck_theme['name'] }}</label>
                                     <input type="checkbox" name="deck_theme" id="{{ deck_theme['name'] }}"
