@@ -21,7 +21,9 @@ def get_img_dirs():
     my_path = 'static/images/'
     decks_data = []
     for dir_name in listdir(my_path):
-        first_img = get_files(dir_name)[0]
+        icons = get_files(dir_name)
+        icons.sort()
+        first_img = icons[0]
         deck_data = {'name': dir_name, 'img': first_img}
         decks_data.append(deck_data)
     return decks_data
