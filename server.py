@@ -32,7 +32,7 @@ def get_img_dirs():
 @app.route('/game')
 def game():
     deck_themes = request.args.getlist('deck_theme')
-    if deck_themes == []:
+    if not deck_themes:
         deck_themes = [d for d in listdir('static/images/')]
 
     files = []
