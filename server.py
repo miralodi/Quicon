@@ -43,8 +43,10 @@ def game():
     player_2_keys = ["U", "I", "O", "P", "J"]
 
     difficulty = int(request.args.get('difficulty', 4))
-    time = request.args.get('time', '0:15')
-
+    time = request.args.get('time')
+    minutes = int(int(time) / 60)
+    seconds = "00" if int(time) % 60 == 0 else int(time) % 60
+    time = f'{minutes}:{seconds}'
     player_1_keys_by_difficulty = player_1_keys[:difficulty]
     player_2_keys_by_difficulty = player_2_keys[:difficulty]
 
