@@ -41,7 +41,7 @@ def game():
         for img in img_list:
             files.append(img)
 
-    player_1_keys = ["Q", "W", "E", "R", "A"]
+    player_1_keys = ["Q", "W", "E", "R", "F"]
     player_2_keys = ["U", "I", "O", "P", "J"]
 
     difficulty = int(request.form.get('difficulty', 4))
