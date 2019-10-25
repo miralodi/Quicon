@@ -110,11 +110,16 @@ function main() {
 
     function timer(counter, gameOver) {
         return function () {
-            const time = document.querySelector('#timer').dataset.time;
-            counter.end = time.slice(0, 1) * 60 + parseInt(time.slice(2));
+            let mins = localStorage.getItem('mins') || 1;
+            let secs = localStorage.getItem('secs') || 30;
+            counter.end = mins * 60 + parseInt(secs);
             // Get the containers
-            counter.min = document.querySelector("#cd-min");
-            counter.sec = document.querySelector("#cd-sec");
+            let minsHtml = document.querySelector("#cd-min");
+            let secsHtml = document.querySelector('#cd-sec');
+            minsHtml.innerHTML = mins;
+            secsHtml.innerHTML = secs;
+            counter.min = minsHtml;
+            counter.sec = secsHtml;
 
             // Start if not past end date
             if (counter.end > 0) {
@@ -127,8 +132,8 @@ function main() {
                     }
 
                     // Calculate remaining time
-                    let secs = counter.end;
-                    let mins = Math.floor(secs / 60); // 1 min = 60 secs
+                    secs = counter.end;
+                    mins = Math.floor(secs / 60); // 1 min = 60 secs
                     secs -= mins * 60;
 
                     if (secs < 6 && mins === 0) {

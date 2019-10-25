@@ -29,9 +29,9 @@ def get_img_dirs():
     return decks_data
 
 
-@app.route('/game')
+@app.route('/game', methods=['POST', 'GET'])
 def game():
-    deck_themes = request.args.getlist('deck_theme')
+    deck_themes = request.form.getlist('deck_theme')
     if not deck_themes:
         deck_themes = [d for d in listdir('static/images/')]
 
@@ -44,19 +44,14 @@ def game():
     player_1_keys = ["Q", "W", "E", "R", "A"]
     player_2_keys = ["U", "I", "O", "P", "J"]
 
-    difficulty = int(request.args.get('difficulty', 4))
-    time = request.args.get('time')
-    minutes = int(int(time) / 60)
-    seconds = "00" if int(time) % 60 == 0 else int(time) % 60
-    time = f'{minutes}:{seconds}'
+    difficulty = int(request.form.get('difficulty', 4))
     player_1_keys_by_difficulty = player_1_keys[:difficulty]
     player_2_keys_by_difficulty = player_2_keys[:difficulty]
 
-    player_1 = request.args.get('player_1', "Player 1")
-    player_2 = request.args.get('player_2', "Player 2")
+    player_1 = request.form.get('player_1', "Player 1")
+    player_2 = request.form.get('player_2', "Player 2")
 
     return render_template('game.html',
-                           time=time,
                            player_1=player_1,
                            player_2=player_2,
                            player_1_keys=player_1_keys_by_difficulty,

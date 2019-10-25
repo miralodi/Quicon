@@ -22,7 +22,10 @@ function time() {
     timer.addEventListener('input', function () {
         minutes = parseInt((timer.value) / 60);
         seconds = timer.value % 60 === 0 ? "00" : parseInt(timer.value % 60);
-        timeShow.innerHTML = `${minutes}:${seconds}`;
+        const time = `${minutes}:${seconds}`;
+        timeShow.innerHTML = time;
+        localStorage.setItem('mins', minutes);
+        localStorage.setItem('secs', seconds);
     });
 }
 
