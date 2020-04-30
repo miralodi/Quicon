@@ -1,0 +1,28 @@
+.playing-field, .game-conditions, .themes  {
+    background-color: darkseagreen;
+}
+
+.card-key, #winner-header {
+    color: #3D849E;
+
+}
+
+.card-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.deck-theme {
+    justify-content: center;
+    padding-top: 10px;
+    display: inline-block;
+    width: 30%;
+}
+
+.deck-theme label {
+    padding: 3px;
+}
+
+.red-colored {
+    color: tomato;
+}
